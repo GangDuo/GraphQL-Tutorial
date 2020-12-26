@@ -15,6 +15,22 @@ export default {
     },
   },
 
+  Mutation: {
+    signUp: async (
+      parent,
+      { username, email, password },
+      { models },
+    ) => {
+      const user = await models.User.create({
+        username,
+        email,
+        password,
+      });
+ 
+      return { token: createToken(user) };
+    },
+  },
+
   User: {
     messages: async (user, args, { models }) => {
       return await models.Message.findAll({
