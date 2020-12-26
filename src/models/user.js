@@ -55,6 +55,10 @@ const user = (sequelize, DataTypes) => {
       const saltRounds = 10;
       return await bcrypt.hash(this.password, saltRounds);
     };
+
+    User.prototype.validatePassword = async function(password) {
+      return await bcrypt.compare(password, this.password);
+    };
    
     return User;
   };
