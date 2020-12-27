@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import DataLoader from 'dataloader';
 import http from 'http';
 import cors from 'cors';
 import express from 'express';
@@ -11,6 +12,7 @@ import {
 import schema from './schema';
 import resolvers from './resolvers';
 import models, { sequelize }  from './models';
+import loaders from './loaders';
 
 const app = express();
 
@@ -38,6 +40,9 @@ const server = new ApolloServer({
       // サブスクリプション
       return {
         models,
+        loaders: {
+          user: new DataLoader(keys => loaders.user.batchUsers(keys, models)),
+        },
       };
     }
 
@@ -49,6 +54,9 @@ const server = new ApolloServer({
         models,
         me,
         secret: process.env.SECRET,
+        loaders: {
+          user: new DataLoader(keys => loaders.user.batchUsers(keys, models)),
+        },
       };
     }
   },
