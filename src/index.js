@@ -69,13 +69,15 @@ server.installSubscriptionHandlers(httpServer);
 
 const isTest =  process.env.NODE_ENV.toLocaleLowerCase() === 'development';
 
+const port = process.env.PORT || 8000;
+
 sequelize.sync({ force: isTest }).then(async () => {
   if (isTest) {
     createUsersWithMessages(new Date());
   }
 
-  httpServer.listen({ port: 8000 }, () => {
-    console.log('Apollo Server on http://localhost:8000/graphql');
+  httpServer.listen({ port }, () => {
+    console.log(`Apollo Server on http://localhost:${port}/graphql`);
   });
 });
 
