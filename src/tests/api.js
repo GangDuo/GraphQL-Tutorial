@@ -1,7 +1,21 @@
 import axios from 'axios';
  
 const API_URL = 'http://localhost:8000/graphql';
- 
+
+export const users = async () =>
+  axios.post(API_URL, {
+    query: `
+      query {
+        users {
+          id
+          username
+          email
+          role
+        }
+      }
+    `,
+  });
+
 export const user = async variables =>
   axios.post(API_URL, {
     query: `
@@ -17,6 +31,39 @@ export const user = async variables =>
     variables,
   });
 
+export const me = async (token) =>
+  axios.post(API_URL, 
+    {
+      query: `
+        query {
+          me {
+            id
+            username
+            email
+            role
+          }
+        }
+      `,
+    },
+    {
+      headers: {
+        'x-token': token || '',
+      },
+    },
+  );
+
+export const signUp = async variables =>
+  await axios.post(API_URL, {
+    query: `
+      mutation ($username: String!, $email: String!, $password: String!) {
+        signUp(username: $username, email: $email, password: $password) {
+          token
+        }
+      }
+    `,
+    variables,
+  });
+ 
 export const signIn = async variables =>
   await axios.post(API_URL, {
     query: `
