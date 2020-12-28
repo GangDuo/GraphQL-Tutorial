@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import * as userApi from './api';
+import { userApi } from './api';
 
 describe('users', () => {
   describe('users: [User!]', () => {
