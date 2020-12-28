@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
-    "dev": "npm start",
+    "start": "npx babel-node src/index.js",
+    "dev": "nodemon --exec babel-node src/index.js",
     "test": "mocha --require @babel/register 'src/**/*.spec.js'"
   },
   "keywords": [],
