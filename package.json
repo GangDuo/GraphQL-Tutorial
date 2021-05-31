@@ -22,7 +22,7 @@
     "cross-fetch": "^3.0.6",
     "mocha": "^8.2.1",
     "nodemon": "^1.18.9",
-    "ws": "^7.4.1"
+    "ws": "^7.4.6"
   },
   "dependencies": {
     "apollo-server": "^2.19.1",
