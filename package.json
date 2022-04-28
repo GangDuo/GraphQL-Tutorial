@@ -19,7 +19,7 @@
     "@babel/register": "^7.12.10",
     "axios": "^0.21.1",
     "chai": "^4.2.0",
-    "cross-fetch": "^3.0.6",
+    "cross-fetch": "^3.1.5",
     "mocha": "^8.2.1",
     "nodemon": "^1.18.9",
     "ws": "^7.4.6"
